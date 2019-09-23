@@ -1,0 +1,3 @@
+#snakeCanvas {
+  background-color: gray;
+}
