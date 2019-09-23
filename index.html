@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Snake JS</title>
-    <script src="sketch.js" type="text/javascript" charset="utf-8"></script>
-    <script src="Snake.js" type="text/javascript" charset="utf-8"></script>
-    <script src="Point.js" type="text/javascript" charset="utf-8"></script>
-    <script src="FoodSpawner.js" type="text/javascript" charset="utf-8"></script>
 
-    <link rel="stylesheet" type="text/css" href="style.cs">
-  </head>
-  <body onload="setup()">
-    <canvas id="snakeCanvas" width="1000" height="600"></canvas>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Snake JS</title>
+  <script src="sketch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="Snake.js" type="text/javascript" charset="utf-8"></script>
+  <script src="Point.js" type="text/javascript" charset="utf-8"></script>
+  <script src="GameOver.js" type="text/javascript" charset="utf-8"></script>
+  <script src="FoodSpawner.js" type="text/javascript" charset="utf-8"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body onload="setup()">
+  <h1 id="headline">Snake JS!</h1>
+  <div>
+    <p>some Text...</p>
+  </div>
+  <div>
+    <canvas id="snakeCanvas" width="1000" height="500"></canvas>
+  </div>
+
+  <div>
+    <table id="scoreTable">
+      <thead>
+        <th>Name</th>
+        <th>Score</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Marcel</td>
+          <td>20</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p id="score">0</p>
+</body>
+
 </html>
