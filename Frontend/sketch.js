@@ -2,8 +2,11 @@ var snake = null;
 var foodSpawner = null;
 var scale = 20;
 var score = 0;
+var scoreData = null;
 
 function setup() {
+  scoreData = [new Scorer("Judth", 500), new Scorer("Franz", 700), new Scorer("Chef", 1200)];
+  fillScoreTable();
   document.onkeydown = keyPressed;
   var c = document.getElementById("snakeCanvas");
   snake = new Snake(scale, c.width, c.height);
@@ -12,21 +15,32 @@ function setup() {
   run();
 }
 
+function saveScore() {
+  var name = document.getElementById("scorerName").value;
+  scoreData.push(new Scorer(name, score));
+  fillScoreTable();
+  $('#gameOverModal').modal('hide');
+}
+
 function run() {
   setTimeout(function onTick() {
-    try{
+    try {
       snake.move();
-      if (snake.isOnFood(foodSpawner.currentFoodLoc)){
+      if (snake.isOnFood(foodSpawner.currentFoodLoc)) {
         snake.grow();
         foodSpawner.spawn();
         score += 100;
       }
       draw();
       run();
-    }catch(error){
-      if(error.name == "GameOver"){
-        alert("Game Over! Your score: " + score);
-      }else{
+    } catch (error) {
+      if (error.name == "GameOver") {
+        $('#gameOverModal').modal({
+          keyboard: false
+        });
+        $('#gameOverModal').modal('toggle');
+        $('#gameOverModal').modal('show');
+      } else {
         alert(error);
       }
     }
@@ -59,7 +73,7 @@ function keyPressed(e) {
 
 
 function draw() {
-  document.getElementById("score").innerHTML = score;
+  document.getElementById("score").innerHTML = "Current score: " + score + " Points";
   var c = document.getElementById("snakeCanvas");
   var ctx = c.getContext("2d");
   ctx.beginPath();
@@ -70,5 +84,23 @@ function draw() {
   ctx.strokestyle = 'darkgreen';
   this.snake.tail.forEach(element => {
     ctx.fillRect(element.xCoo, element.yCoo, this.snake.scale, this.snake.scale);
+  });
+}
+
+function fillScoreTable() {
+  tableBody = document.getElementById("scoreTableBody");
+  tableBody.innerHTML = "";
+  scoreData.forEach((item, index) => {
+    var tr = document.createElement('TR');
+    var th = document.createElement('TH');
+    th.appendChild(document.createTextNode(index + 1));
+    var nameTD = document.createElement('TD');
+    nameTD.appendChild(document.createTextNode(item.name));
+    var scoreTD = document.createElement('TD');
+    scoreTD.appendChild(document.createTextNode(item.score));
+    tr.appendChild(th);
+    tr.appendChild(nameTD);
+    tr.appendChild(scoreTD);
+    tableBody.appendChild(tr);
   });
 }

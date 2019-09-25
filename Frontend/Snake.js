@@ -32,7 +32,7 @@ function Snake(scale, windowWidth, windowHeight) {
     newX = this.tail[0].xCoo + this.xDirSpeed * this.scale;
     newY = this.tail[0].yCoo + this.yDirSpeed * this.scale;
     if (newX > this.windowWidth - this.scale) newX = 0;
-    if (newY > this.windowHeight) newY = 0;
+    if (newY > this.windowHeight - this.scale) newY = 0;
     if (newX < 0) newX = this.windowWidth - this.scale;
     if (newY < 0) newY = this.windowHeight - this.scale;
     this.tail.unshift(new Point(newX, newY));
