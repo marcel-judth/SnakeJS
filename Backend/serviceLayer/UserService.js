@@ -12,12 +12,16 @@ module.exports = function () {
         database.getAllUsersSortedByScore(sucess, error);
     }
 
-    function _register(username, password, firstName, lastName, email, sucess, error){
-        database.register(username, password, firstName, lastName, email, sucess, error);
+    function _register(name, email, password, success, error){
+        database.register(name, email, password, success, error);
     }
 
     function _login (username, password, success, error){
-        database.login(username, password, success, error);
+        try {
+            database.login(username, password, success, error);
+        } catch (error) {
+            console.log("hallo1");
+        }
     }
 
     function _insertScore (username, score, success, error){
